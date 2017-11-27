@@ -1,3 +1,4 @@
+package ui;
 
 
 
@@ -11,15 +12,23 @@ public class BTDevice {
 		this.name=name;
 		this.BTURL=BTURL;
 	}
-	
-	@Override
-	public String toString() {
+
+	public String getName() {
 		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getBTURL() {
 		return BTURL;
 	}
+
+	public void setBTURL(String bTURL) {
+		BTURL = bTURL;
+	}
+	
 	
 	
 }

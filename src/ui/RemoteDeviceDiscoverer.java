@@ -1,3 +1,4 @@
+package ui;
 
 
 import java.io.IOException;
@@ -18,7 +19,7 @@ import javax.bluetooth.ServiceRecord;
 public class RemoteDeviceDiscoverer{
 
 //	private final Vector devicesDiscovered = new Vector();
-	List <RemoteDevice> test = new ArrayList();
+	List <RemoteDevice> test = new ArrayList<RemoteDevice>();
 	public void searchDevices() throws IOException, InterruptedException {
 
 		final Object inquiryCompletedEvent = new Object();
@@ -59,7 +60,14 @@ public class RemoteDeviceDiscoverer{
 			}
 		}
 	}
+	public List<RemoteDevice> getTest() {
+		return test;
+	}
+	public void setTest(List<RemoteDevice> test) {
+		this.test = test;
+	}
 
+	
 
 
 }

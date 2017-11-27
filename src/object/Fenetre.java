@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 
 public class Fenetre extends JFrame {
 	
+	
+	
 	 public Fenetre(){             
 		    this.setTitle("Liste des Appareils Bluetooth");
 		    this.setSize(400, 500);
@@ -21,6 +23,7 @@ public class Fenetre extends JFrame {
 		    //On prévient notre JFrame que notre JPanel sera son content pane
 		    this.setContentPane(pan);               
 		    this.setVisible(true);
+		    
 		  }       
 
 }
