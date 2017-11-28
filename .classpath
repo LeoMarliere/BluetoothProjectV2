@@ -6,8 +6,8 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/théo/Desktop/bluecove-2.1.1-SNAPSHOT.jar.URL"/>
-	<classpathentry kind="lib" path="C:/Users/théo/Desktop/javamail-1.4.5/mail.jar"/>
-	<classpathentry kind="lib" path="C:/Users/théo/Desktop/mysql-connector-java-5.0.5-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/théo/Desktop/epsi/jar/bluecove-2.1.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/théo/Desktop/epsi/jar/javamail-1.4.5/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/théo/Desktop/epsi/jar/mysql-connector-java-5.0.5-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
