@@ -17,8 +17,11 @@ public class ConnectionBDD {
 			PreparedStatement pstmt =con.prepareStatement("SELECT * FROM peripherique;");
 			//   pstmt.setString(1, "test");
 			rs=pstmt.executeQuery();
+			
 			while(rs.next()){ 
-				System.out.println("test="+rs.getString(2));
+				for(int i=1;i<=5;i++)
+					System.out.print(rs.getString(i) + " ");
+				System.out.println();
 			}
 			pstmt.close();
 			con.close();

@@ -2,6 +2,7 @@ package object;
 
 import java.awt.Color; 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Fenetre extends JFrame {
@@ -19,7 +20,9 @@ public class Fenetre extends JFrame {
 		    //Instanciation d'un objet JPanel
 		    JPanel pan = new JPanel();
 		    //Définition de sa couleur de fond
-		    pan.setBackground(Color.ORANGE);        
+		    pan.setBackground(Color.ORANGE);  
+		    JLabel label = new JLabel("lool");
+		    pan.add(label);
 		    //On prévient notre JFrame que notre JPanel sera son content pane
 		    this.setContentPane(pan);               
 		    this.setVisible(true);
