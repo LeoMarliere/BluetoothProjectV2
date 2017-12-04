@@ -19,11 +19,11 @@ public class DeviceList {
 		
 		Fenetre fen = new Fenetre();
 		
-		//remoteDeviceDiscoverer = new RemoteDeviceDiscoverer();  	
-		//remoteDeviceDiscoverer.searchDevices(); 
-		//deviceList = remoteDeviceDiscoverer.getTest();
-		
-		//System.out.println(deviceList.get(1).getFriendlyName(false));
+//		remoteDeviceDiscoverer = new RemoteDeviceDiscoverer();  	
+//		remoteDeviceDiscoverer.searchDevices(); 
+//		deviceList = remoteDeviceDiscoverer.getTest();
+//		
+//		System.out.println(deviceList.get(1).getFriendlyName(false));
 
 	}
 

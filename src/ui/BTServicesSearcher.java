@@ -13,7 +13,7 @@ public class BTServicesSearcher {
 
 		remoteDeviceDiscoverer = new RemoteDeviceDiscoverer();  	
 		remoteDeviceDiscoverer.searchDevices(); 
-		System.out.println(remoteDeviceDiscoverer.test.get(1).getFriendlyName(false));
+		System.out.println(remoteDeviceDiscoverer.test.get(1));
 
 	}
 
