@@ -1,49 +1,66 @@
 package object;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import ui.DetectedDevicePanel;
 
-public class Fenetre extends JFrame {
+public class Fenetre{
 	private JTable tableau;
 	private JScrollPane scrollPane;
+	private JFrame frame1;
+	private Font font;
+	private Font font2;
 	 public Fenetre() throws IOException, InterruptedException{
-
-		 	// On crée la fenêtre
-		    this.setTitle("Liste des Appareils Bluetooth");
-		    this.setSize(400, 500);
-		    this.setLocationRelativeTo(null); 
-		    this.setResizable(false);
-		    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		 	frame1 = new JFrame("Liste des Appareils Bluetooth");
+		   
+		 	frame1.setSize(600, 700);
+		 	frame1.setLocation(700, 200);
+		 	
+		 	frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		    
 		    tableau = new JTable(new DetectedDevicePanel());
+		    font = new Font("Serial", Font.PLAIN, 26);
+		    font2 = new Font("Serial", Font.BOLD, 30);
+		    tableau.setFont(font);
+		    tableau.setRowHeight(30);
+		    tableau.getTableHeader().setFont(font2);
+		    tableau.getTableHeader().setPreferredSize(new Dimension( tableau.getTableHeader().getWidth(),35));
 		    scrollPane =new JScrollPane(tableau);
 		    
-		    getContentPane().add(scrollPane, BorderLayout.CENTER);
+		    frame1.getContentPane().add(scrollPane, BorderLayout.CENTER);
 		    
 		    JPanel boutons = new JPanel();
 		    
 	        boutons.add(new JButton(new RefreshAction()));
 	        boutons.add(new JButton(new ShowFCAction()));
 	 
-	        getContentPane().add(boutons, BorderLayout.SOUTH);
+	        frame1.getContentPane().add(boutons, BorderLayout.SOUTH);
 		    
-	        pack();
+	       
 
 		  }    
 	 
+	 public Component getFrame() {
+		 return frame1;
+	 }
+	 
 	  public static void main(String[] args) throws IOException, InterruptedException {
-	        new Fenetre().setVisible(true);
+	        new Fenetre().frame1.setVisible(true);
 	    }
 	  
 	  
@@ -70,9 +87,20 @@ public class Fenetre extends JFrame {
 	        }
 	 
 	        public void actionPerformed(ActionEvent e) {
-	        	int selection = tableau.getSelectedRow();
-	        	String addresseMac = (String) tableau.getValueAt(selection, 0);
-	        	
+	        	if(tableau.getSelectedColumnCount() != 0) {
+	        		int selection = tableau.getSelectedRow();
+	        		String adresseMac = (String) tableau.getValueAt(selection, 0);
+	        		String deviceName = (String) tableau.getValueAt(selection, 1);
+	        		try {
+						Fenetre2 frame2 = new Fenetre2(adresseMac, deviceName);
+					} catch (ClassNotFoundException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+	        	}else {
+	        		JOptionPane jop = new JOptionPane();
+	        		jop.showMessageDialog(null,"Sélectioner un client","Attention",JOptionPane.WARNING_MESSAGE);
+	        	}
 	        }
 	    }
 
