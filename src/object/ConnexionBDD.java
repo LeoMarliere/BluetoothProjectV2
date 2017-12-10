@@ -5,11 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.bluetooth.RemoteDevice;
 
+import outils.FicheClient;
 import ui.RemoteDeviceDiscoverer;
 
 public class ConnexionBDD {
@@ -24,6 +26,7 @@ public class ConnexionBDD {
 	static String tempDeviceName;
 	private static RemoteDeviceDiscoverer remoteDeviceDiscoverer;
 	private static List <RemoteDevice> deviceList;
+	private static List<FicheClient> res;
 	
 	public ConnexionBDD() throws SQLException, ClassNotFoundException{
 		Class.forName("com.mysql.jdbc.Driver");
@@ -32,7 +35,6 @@ public class ConnexionBDD {
 	
 	public void connexionClose() throws SQLException {
 		pstmt.close();
-	
 		con.close();
 		
 	}
@@ -107,6 +109,31 @@ public class ConnexionBDD {
 		}
 		pstmt2.close();
 		rs2.close();
+	}
+	
+	public List<FicheClient> displayAll() throws SQLException{
+		res= new ArrayList<FicheClient>();
+		pstmt =con.prepareStatement("SELECT * FROM ficheClient;");
+		rs=pstmt.executeQuery();
+	
+		while(rs.next()) {
+			System.out.println(rs.getString(2));
+			res.add(new FicheClient(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7)));
+		}
+		rs.close();
+		return res;
+	}
+	
+	public void deletePeriph(String adresseMac) throws SQLException {
+		pstmt =con.prepareStatement("DELETE FROM peripherique where adresseMac = ? ;");	
+		pstmt.setString(1, adresseMac);
+		pstmt.executeUpdate();
+	}
+	
+	public void deleteFicheClient(String adresseMac) throws SQLException {
+		pstmt =con.prepareStatement("DELETE FROM ficheClient where adresseMac = ? ;");	
+		pstmt.setString(1, adresseMac);
+		pstmt.executeUpdate();
 	}
 	
 	

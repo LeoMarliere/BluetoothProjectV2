@@ -13,8 +13,11 @@ import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+
+import javafx.scene.control.CheckBox;
 
 
 public class Fenetre4 {
@@ -36,8 +39,6 @@ public class Fenetre4 {
 	private JTextArea textArea5;
 	private JTextArea textArea6;
 	private JTextArea textArea7;
-	private JTextArea textArea8;
-	private JTextArea textArea9;
 	private Font font1;
 	private GridLayout grid;
 	private JPanel boutons;
@@ -56,7 +57,7 @@ public class Fenetre4 {
 		pan1.setLayout(grid);
 
 		fenetre4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		fenetre4.setLocation(700, 200); 
+		fenetre4.setLocation(500, 200); 
 		fenetre4.setSize(600,700);
 		fenetre4.setVisible(true);
 		ConnexionBDD con = new ConnexionBDD();
@@ -143,15 +144,25 @@ public class Fenetre4 {
 		public void actionPerformed(ActionEvent e) {
 			
 			try {
+				
 				Date ajd = new Date();
 				SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yy");
 				
 				ConnexionBDD con= new ConnexionBDD();
-			
+				if(textArea4.getText().contains("@")) {
 				con.insertFiche(getAdresseMac(), textArea1.getText(), textArea2.getText(), textArea3.getText(), textArea4.getText(), textArea5.getText(), textArea6.getText(), textArea7.getText());
 				con.insertPeriph(getAdresseMac(), 1, formater.format(ajd).toString(), true);
-
-				con.connexionClose();
+				JOptionPane jop = new JOptionPane();
+	    		jop.showMessageDialog(null,"Fiche Créée","Création",JOptionPane.INFORMATION_MESSAGE);
+	    		con.connexionClose();
+	    		fenetre4.dispose();
+				} else {
+					JOptionPane jop = new JOptionPane();
+		    		jop.showMessageDialog(null,"Email invalide","ERROR",JOptionPane.ERROR_MESSAGE);
+				}
+				
+				
+			
 			} catch (ClassNotFoundException | SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

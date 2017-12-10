@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import ui.DetectedDevicePanel;
+import outils.DetectedDevicePanel;
 
 public class Fenetre{
 	private JTable tableau;
@@ -29,9 +29,9 @@ public class Fenetre{
 		 	frame1 = new JFrame("Liste des Appareils Bluetooth");
 		   
 		 	frame1.setSize(600, 700);
-		 	frame1.setLocation(700, 200);
-		 	
-		 	frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		 	frame1.setLocation(500, 200);
+		 	frame1.setVisible(true);
+		 	frame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
 		    
 		    tableau = new JTable(new DetectedDevicePanel());
 		    font = new Font("Serial", Font.PLAIN, 26);
@@ -92,6 +92,7 @@ public class Fenetre{
 	        		String adresseMac = (String) tableau.getValueAt(selection, 0);
 	        		String deviceName = (String) tableau.getValueAt(selection, 1);
 	        		try {
+	        			
 						Fenetre2 frame2 = new Fenetre2(adresseMac, deviceName);
 					} catch (ClassNotFoundException | SQLException e1) {
 						// TODO Auto-generated catch block

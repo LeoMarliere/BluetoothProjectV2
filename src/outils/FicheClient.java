@@ -1,4 +1,4 @@
-package object;
+package outils;
 
 public class FicheClient {
 	
@@ -9,8 +9,7 @@ public class FicheClient {
 	private String mail;
 	private String numTelephone;
 	
-	public FicheClient(String adresse_mac, String nom, String prenom,
-			String adresse, String mail, String numTelephone) {
+	public FicheClient(String adresse_mac, String nom, String prenom, String adresse, String mail, String numTelephone) {
 		super();
 		this.adresse_mac = adresse_mac;
 		this.nom = nom;

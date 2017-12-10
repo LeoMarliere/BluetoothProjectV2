@@ -39,7 +39,7 @@ public class Fenetre2 {
 		pan1 = new JPanel();
 		
 		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		fenetre2.setLocation(700, 200); 
+		fenetre2.setLocation(500, 200); 
 		fenetre2.setSize(600,700);
 		fenetre2.setVisible(true);
 		
@@ -119,7 +119,7 @@ public class Fenetre2 {
 	 
 	        public void actionPerformed(ActionEvent e) {
 	        	try {
-					Fenetre3 frame3 = new Fenetre3(getAdresseMac() , true);
+					Fenetre3 frame3 = new Fenetre3(getAdresseMac());
 				} catch (ClassNotFoundException | SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

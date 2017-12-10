@@ -38,7 +38,7 @@ public class Fenetre3 {
 	private String adresseMac;
 	
 	
-	public Fenetre3(String adresseMac, boolean ficheCree) throws ClassNotFoundException, SQLException {
+	public Fenetre3(String adresseMac) throws ClassNotFoundException, SQLException {
 		this.adresseMac=adresseMac;
 		fenetre3 = new JFrame("Fiche client");
 		pan1 = new JPanel();
@@ -49,7 +49,7 @@ public class Fenetre3 {
 		pan1.setLayout(grid);
 
 		fenetre3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		fenetre3.setLocation(700, 200); 
+		fenetre3.setLocation(500, 200); 
 		fenetre3.setSize(600,700);
 		fenetre3.setVisible(true);
 		ConnexionBDD con = new ConnexionBDD();
@@ -57,7 +57,7 @@ public class Fenetre3 {
 		label1= new JLabel("     Adresse MAC : ");
 		label3= new JLabel("     Nom  : ");
 		label5= new JLabel("     Prenom : ");
-		label7= new JLabel("     Adresse : ");
+		label7= new JLabel("     Ville, adresse : ");
 		label9= new JLabel("     Mail : ");
 		label11= new JLabel("     Numero de telephone : ");
 		label13= new JLabel("     Genre : ");
@@ -75,7 +75,7 @@ public class Fenetre3 {
 		label14= new JLabel(con.selectedFiche("genre", adresseMac));
 		label16= new JLabel(con.selectedFiche("dateNaissance", adresseMac));
 		//}
-		font1 = new Font("Serif", Font.PLAIN, 26);
+		font1 = new Font("Serial", Font.PLAIN, 26);
 		label1.setFont(font1);
 		label2.setFont(font1);
 		label3.setFont(font1);
@@ -163,7 +163,12 @@ public class Fenetre3 {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-
+			try {
+				FenetreSms sendSms = new FenetreSms(label12.getText());
+			} catch (ClassNotFoundException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 	
