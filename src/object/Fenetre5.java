@@ -5,8 +5,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
@@ -16,10 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import outils.Sms;
-
-
-public class Fenetre4 {
+public class Fenetre5 {
 	private JFrame fenetre4;
 	private JPanel pan1;
 	private JLabel label1;
@@ -42,12 +37,11 @@ public class Fenetre4 {
 	private GridLayout grid;
 	private JPanel boutons;
 	private String adresseMac;
-	private JButton button1;
 
-	public Fenetre4(String adresseMac) throws ClassNotFoundException, SQLException {
-		this.adresseMac=adresseMac;
-
+	public Fenetre5(String adresseMac) throws ClassNotFoundException, SQLException {
+		this.adresseMac=adresseMac;	
 		fenetre4 = new JFrame("Création d'une fiche client");
+		pan1 = new JPanel();
 
 		grid= new GridLayout(8,2);
 		grid.setHgap(10);
@@ -58,13 +52,14 @@ public class Fenetre4 {
 		fenetre4.setLocation(500, 200); 
 		fenetre4.setSize(600,700);
 		fenetre4.setVisible(true);
+
 		ConnexionBDD con = new ConnexionBDD();
 
 		label1= new JLabel("     Adresse MAC : ");
 		label11= new JLabel(adresseMac);
 		label2= new JLabel("     Nom  : ");
 		label3= new JLabel("     Prenom : ");
-		label4= new JLabel("     Ville, Adresse : ");
+		label4= new JLabel("     Adresse : ");
 		label5= new JLabel("     Mail : ");
 		label6= new JLabel("     Numero de telephone : ");
 		label7= new JLabel("     Genre : ");
@@ -121,9 +116,7 @@ public class Fenetre4 {
 		pan1.add(textArea7);
 
 		boutons = new JPanel();
-		button1 = new JButton(new Valider());
-		button1.setFont(font1);
-		boutons.add(button1);
+		boutons.add(new JButton(new Modifier()));
 
 		con.connexionClose();
 
@@ -135,38 +128,29 @@ public class Fenetre4 {
 		return adresseMac;
 	}
 
-	private class Valider extends AbstractAction {
-		private Valider() {
-			super("Valider");
+	private class Modifier extends AbstractAction {
+		private Modifier() {
+			super("Modifier");
 		}
 
 		public void actionPerformed(ActionEvent e) {
 			try {
-				Date ajd = new Date();
-				SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yy");
 				ConnexionBDD con= new ConnexionBDD();
 				if(textArea4.getText().contains("@")) {
-					con.insertFiche(getAdresseMac(), textArea1.getText(), textArea2.getText(), textArea3.getText(), textArea4.getText(), textArea5.getText(), textArea6.getText(), textArea7.getText());
-					con.insertPeriph(getAdresseMac(), 1, formater.format(ajd).toString(), true);
+					con.updateFiche(getAdresseMac(), textArea1.getText(), textArea2.getText(), textArea3.getText(), textArea4.getText(), textArea5.getText(), textArea6.getText(), textArea7.getText());
 					JOptionPane jop = new JOptionPane();
-					jop.showMessageDialog(null,"Fiche Créée","Création",JOptionPane.INFORMATION_MESSAGE);
+					jop.showMessageDialog(null,"Fiche modifié","Modification",JOptionPane.INFORMATION_MESSAGE);
 					con.connexionClose();
 					fenetre4.dispose();
 				} else {
 					JOptionPane jop = new JOptionPane();
 					jop.showMessageDialog(null,"Email invalide","ERROR",JOptionPane.ERROR_MESSAGE);
 				}
-				String text ="1ére visite! Vous avez -10 % de réduction sous présentation de ce code \"EPSI\"";
-				Sms sms = new Sms();
-				sms.sendSms(textArea5.getText(), text);
-
 			} catch (ClassNotFoundException | SQLException e1) {
 				e1.printStackTrace();
 			}finally {
 
 			}
-
-
 		}
 	}
 }

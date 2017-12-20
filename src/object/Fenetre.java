@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -25,6 +24,9 @@ public class Fenetre{
 	private JFrame frame1;
 	private Font font;
 	private Font font2;
+	private JButton button1;
+	private JButton button2;
+	
 	 public Fenetre() throws IOException, InterruptedException{
 		 	frame1 = new JFrame("Liste des Appareils Bluetooth");
 		   
@@ -45,14 +47,14 @@ public class Fenetre{
 		    frame1.getContentPane().add(scrollPane, BorderLayout.CENTER);
 		    
 		    JPanel boutons = new JPanel();
-		    
-	        boutons.add(new JButton(new RefreshAction()));
-	        boutons.add(new JButton(new ShowFCAction()));
+		    button1 = new JButton(new RefreshAction());
+		    button2 = new JButton(new ShowFCAction());
+		    button1.setFont(font);
+		    button2.setFont(font);
+	        boutons.add(button1);
+	        boutons.add(button2);
 	 
 	        frame1.getContentPane().add(boutons, BorderLayout.SOUTH);
-		    
-	       
-
 		  }    
 	 
 	 public Component getFrame() {
@@ -74,10 +76,8 @@ public class Fenetre{
 	        		tableau.setModel(new DetectedDevicePanel());
 	    		    scrollPane.setViewportView(tableau);
 				} catch (IOException | InterruptedException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-	        	 System.out.println("okok");
 	        }
 	    }
 	  

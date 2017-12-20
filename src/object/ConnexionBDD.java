@@ -9,10 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.bluetooth.RemoteDevice;
-
 import outils.FicheClient;
-import ui.RemoteDeviceDiscoverer;
 
 public class ConnexionBDD {
 	private static Connection con;
@@ -24,8 +21,6 @@ public class ConnexionBDD {
 	private static PreparedStatement pstmt;
 	private PreparedStatement pstmt2;
 	static String tempDeviceName;
-	private static RemoteDeviceDiscoverer remoteDeviceDiscoverer;
-	private static List <RemoteDevice> deviceList;
 	private static List<FicheClient> res;
 	
 	public ConnexionBDD() throws SQLException, ClassNotFoundException{
@@ -36,7 +31,6 @@ public class ConnexionBDD {
 	public void connexionClose() throws SQLException {
 		pstmt.close();
 		con.close();
-		
 	}
 	
 	public String selectedPeriph(String what, String adresseMac) throws SQLException {
@@ -49,7 +43,6 @@ public class ConnexionBDD {
 		}else {
 			res = null;
 		}
-		System.out.println(res);
 		rs.close();
 		return res;
 	}
@@ -136,65 +129,17 @@ public class ConnexionBDD {
 		pstmt.executeUpdate();
 	}
 	
+	public void updateFiche(String adresseMac, String nom, String prenom, String adresse, String eMail, String telephone, String genre, String dateNaissance) throws SQLException {
+		pstmt =con.prepareStatement("UPDATE ficheClient SET nom = ?, prenom = ?, adresse = ?, adresseMail = ?, telephone = ?, genre = ?, dateNaissance = ? where adresseMac = ?;");	
+		pstmt.setString(1, nom);
+		pstmt.setString(2, prenom);
+		pstmt.setString(3, adresse);
+		pstmt.setString(4, eMail);
+		pstmt.setString(5, telephone);
+		pstmt.setString(6, genre);
+		pstmt.setString(7, dateNaissance);
+		pstmt.setString(8, adresseMac);
+		pstmt.executeUpdate();
+	}
 	
-//	public static void main(String[] args) {
-//	
-//		try {
-////			ConnexionBDD test = new ConnexionBDD();
-////			test.insertFiche("test", "test", "test", "test", "test", "test", "test", "test");
-////			
-////			test.connexionClose();
-//			
-//
-////			while(rs.next()) {
-////				for(int i=0;i<deviceList.size();i++) {
-////					System.out.println("ADD :: "+ deviceList.get(i));
-////					if(rs.getString(2).equals(deviceList.get(i))) {
-////						pstmt2 =con.prepareStatement("Update peripherique set nombreVisite = ? where adresseMac = ?;");
-////						pstmt2.setInt(1, rs.getInt(3)+1);
-////						pstmt2.setString(2, deviceList.get(i));
-////						pstmt2.executeUpdate();
-////						pstmt2.close();
-////					}
-//				
-//			
-////						pstmt2 =con.prepareStatement("INSERT into peripherique (adresseMac, derniereVisite) values (?,?);");
-////						pstmt2.setString(1, deviceList.get(i));
-////						pstmt2.setString(2, "date1");
-////						pstmt2.executeUpdate();
-////						pstmt2.close();
-////					}
-////		}
-////
-////					if(!rs.next()) {
-////						pstmt2 =con.prepareStatement("INSERT into peripherique (adresseMac, derniereVisite) values (?,?);");
-////						pstmt2.setString(1, deviceList.get(i));
-////						pstmt2.setString(2, "date1");
-////						pstmt2.executeUpdate();
-////						pstmt2.close();
-////					}
-//				
-//
-//
-//			
-//
-////			pstmt =con.prepareStatement("SELECT * FROM peripherique;");
-////			//   pstmt.setString(1, "test");
-////			rs=pstmt.executeQuery();
-//////
-////			while(rs.next()){ 
-////				for(int i=1;i<=5;i++)
-////					System.out.print(rs.getString(i) + " ");
-////				System.out.println();
-////			}
-////			pstmt.close();
-////			con.close();
-////			rs.close();
-//		} catch (Exception e) {
-//			System.err.println("Unable to find and load driver");
-//			e.printStackTrace();
-//			System.exit(1);	      
-//		}
-//
-//	}
 }

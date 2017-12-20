@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
-import outils.Mail;
 import outils.Sms;
 
 public class FenetreSms {
@@ -23,7 +22,7 @@ public class FenetreSms {
 	private Font font1;
 	private String numero;
 	private JButton button;
-	
+
 	public FenetreSms(String numero) throws ClassNotFoundException, SQLException {
 		this.numero=numero;
 		fenetreSms = new JFrame("Sms");
@@ -38,7 +37,7 @@ public class FenetreSms {
 		label3= new JLabel("Message : ");
 		textArea1= new JTextArea();
 		button = new JButton(new Envoyer());
-		
+
 		font1 = new Font("Arial", Font.PLAIN, 26);
 		label1.setFont(font1);
 		label2.setFont(font1);
@@ -51,18 +50,15 @@ public class FenetreSms {
 		label3.setBounds(20,60,300, 50);
 		textArea1.setBounds(150,70,700, 350);
 		button.setBounds(150,450,300, 50);
-		
 
 		fenetreSms.getContentPane().add(label1);
 		fenetreSms.getContentPane().add(label2);
 		fenetreSms.getContentPane().add(label3);
 		fenetreSms.getContentPane().add(textArea1);
 		fenetreSms.getContentPane().add(button);
-		
-		
-		}
-	
-	
+	}
+
+
 	private class Envoyer extends AbstractAction {
 		private Envoyer() {
 			super("Envoyer");
@@ -72,20 +68,15 @@ public class FenetreSms {
 			Sms sms = new Sms();			
 			sms.sendSms(numero,textArea1.getText());
 			if(sms.getValidation()) {
-			JOptionPane jop = new JOptionPane();
-    		jop.showMessageDialog(null,"Message envoyé","",JOptionPane.INFORMATION_MESSAGE);
-    		fenetreSms.dispose();
+				JOptionPane jop = new JOptionPane();
+				jop.showMessageDialog(null,"Message envoyé","",JOptionPane.INFORMATION_MESSAGE);
+				fenetreSms.dispose();
 			}else {
 				JOptionPane jop = new JOptionPane();
-	    		jop.showMessageDialog(null,"Mauvais numero","ERROR",JOptionPane.ERROR_MESSAGE);
+				jop.showMessageDialog(null,"Mauvais numero","ERROR",JOptionPane.ERROR_MESSAGE);
 			}
-    		
+
 		}
 	}
-	
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		FenetreSms fen =new FenetreSms("0658966852");
-		
-		
-	}
+
 }

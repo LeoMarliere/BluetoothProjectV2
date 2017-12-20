@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import outils.Sms;
+
 
 public class Fenetre3 {
 	private JFrame fenetre3;
@@ -36,7 +38,9 @@ public class Fenetre3 {
 	private GridLayout grid;
 	private JPanel boutons;
 	private String adresseMac;
-	
+	private JButton button1;
+	private JButton button2;
+	private JButton button3;
 	
 	public Fenetre3(String adresseMac) throws ClassNotFoundException, SQLException {
 		this.adresseMac=adresseMac;
@@ -63,9 +67,6 @@ public class Fenetre3 {
 		label13= new JLabel("     Genre : ");
 		label15= new JLabel("     Date de naissance : ");
 
-
-
-		//if(ficheCree) {
 		label2= new JLabel(con.selectedFiche("adresseMac", adresseMac));
 		label4= new JLabel(con.selectedFiche("nom", adresseMac));
 		label6= new JLabel(con.selectedFiche("prenom", adresseMac));
@@ -74,7 +75,7 @@ public class Fenetre3 {
 		label12= new JLabel(con.selectedFiche("telephone", adresseMac));
 		label14= new JLabel(con.selectedFiche("genre", adresseMac));
 		label16= new JLabel(con.selectedFiche("dateNaissance", adresseMac));
-		//}
+
 		font1 = new Font("Serial", Font.PLAIN, 26);
 		label1.setFont(font1);
 		label2.setFont(font1);
@@ -111,9 +112,12 @@ public class Fenetre3 {
 		pan1.add(label16);
 
 		boutons = new JPanel();
-		boutons.add(new JButton(new Visite()));
-		boutons.add(new JButton(new SendMail()));
-		boutons.add(new JButton(new SendSMS()));
+		button1 = new JButton(new Visite());
+		button2 = new JButton(new SendMail());
+		button3 = new JButton(new SendSMS());
+		boutons.add(button1);
+		boutons.add(button2);
+		boutons.add(button3);
 
 		con.connexionClose();
 
@@ -134,6 +138,12 @@ public class Fenetre3 {
 			try {
 				ConnexionBDD con = new ConnexionBDD();
 				con.UpdatePeriphVisiteDate(getAdresseMac());
+				String text ="1ere visite -10 %  ...";
+				String nbVisite =con.selectedPeriph("nombreVisite", adresseMac);
+				if(nbVisite.equals("4") || nbVisite.equals("10")|| nbVisite.equals("12")) {
+					Sms sms = new Sms();
+					sms.sendSms(label12.getText(), text);
+				}
 				con.connexionClose();
 			} catch (ClassNotFoundException | SQLException e1) {
 				// TODO Auto-generated catch block

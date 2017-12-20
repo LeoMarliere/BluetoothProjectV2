@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Fenetre2 {
-	
+
 	private String adresseMac;
 	private String deviceName;
 	private JFrame fenetre2;
@@ -31,34 +31,33 @@ public class Fenetre2 {
 	private Font font1;
 	private JPanel boutons;
 	private GridLayout grid;
-	
+
 	public Fenetre2(String adresseMac, String deviceName) throws ClassNotFoundException, SQLException {
 		this.adresseMac=adresseMac;
 		this.deviceName=deviceName;
 		fenetre2 = new JFrame("BluetoothDevice");
 		pan1 = new JPanel();
-		
+
 		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre2.setLocation(500, 200); 
 		fenetre2.setSize(600,700);
 		fenetre2.setVisible(true);
-		
+
 		grid= new GridLayout(5,2);
 		grid.setHgap(10);
 		grid.setVgap(10);
 		pan1.setLayout(grid);
-		
+
 		ConnexionBDD con = new ConnexionBDD();
-		
+
 		label1= new JLabel("     Adresse MAC : ");
 		label3= new JLabel("     Nom du téléphone : ");
 		label5= new JLabel("     Nombre de visite : ");
 		label7= new JLabel("     Derniere visite : ");
 		label9= new JLabel("     Fiche créee");
-		
+
 		boutons = new JPanel();
-       
-		
+
 		if(con.selectedFiche("adresseMac", adresseMac) != null) {
 			label2= new JLabel(con.selectedPeriph("adresseMac", adresseMac));
 			label4= new JLabel(deviceName);
@@ -86,7 +85,7 @@ public class Fenetre2 {
 		label8.setFont(font1);
 		label9.setFont(font1);
 		label10.setFont(font1);
-		
+
 		pan1.add(label1);
 		pan1.add(label2);
 		pan1.add(label3);
@@ -97,9 +96,7 @@ public class Fenetre2 {
 		pan1.add(label8);
 		pan1.add(label9);
 		pan1.add(label10);
-		
-	    
-        
+
 		fenetre2.getContentPane().add(pan1,BorderLayout.CENTER);
 		fenetre2.getContentPane().add(boutons, BorderLayout.SOUTH);
 		con.connexionClose();
@@ -111,39 +108,37 @@ public class Fenetre2 {
 	public String deviceName() {
 		return deviceName;
 	}
-	  
-	  private class CheckFiche extends AbstractAction {
-	        private CheckFiche() {
-	            super("Voir la fiche client");
-	        }
-	 
-	        public void actionPerformed(ActionEvent e) {
-	        	try {
-					Fenetre3 frame3 = new Fenetre3(getAdresseMac());
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-	        	fenetre2.dispose();
-	        }
-	    }
-	  
-	  private class CreateFiche extends AbstractAction {
-	        private CreateFiche() {
-	            super("Créé une fiche client");
-	        }
-	 
-	        public void actionPerformed(ActionEvent e) {
-	        	try {
-					Fenetre4 frame4 = new Fenetre4(getAdresseMac());
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-	        	fenetre2.dispose();
-	        }
-	    }
-	
+
+	private class CheckFiche extends AbstractAction {
+		private CheckFiche() {
+			super("Voir la fiche client");
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			try {
+				Fenetre3 frame3 = new Fenetre3(getAdresseMac());
+			} catch (ClassNotFoundException | SQLException e1) {
+				e1.printStackTrace();
+			}
+			fenetre2.dispose();
+		}
+	}
+
+	private class CreateFiche extends AbstractAction {
+		private CreateFiche() {
+			super("Créer une fiche client");
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			try {
+				Fenetre4 frame4 = new Fenetre4(getAdresseMac());
+			} catch (ClassNotFoundException | SQLException e1) {
+				e1.printStackTrace();
+			}
+			fenetre2.dispose();
+		}
+	}
+
 }
 
 
