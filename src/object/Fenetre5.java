@@ -50,7 +50,7 @@ public class Fenetre5 {
 
 		fenetre4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre4.setLocation(500, 200); 
-		fenetre4.setSize(600,700);
+		fenetre4.setSize(700,800);
 		fenetre4.setVisible(true);
 
 		ConnexionBDD con = new ConnexionBDD();
@@ -59,7 +59,7 @@ public class Fenetre5 {
 		label11= new JLabel(adresseMac);
 		label2= new JLabel("     Nom  : ");
 		label3= new JLabel("     Prenom : ");
-		label4= new JLabel("     Adresse : ");
+		label4= new JLabel("     Ville, Adresse : ");
 		label5= new JLabel("     Mail : ");
 		label6= new JLabel("     Numero de telephone : ");
 		label7= new JLabel("     Genre : ");
@@ -148,8 +148,6 @@ public class Fenetre5 {
 				}
 			} catch (ClassNotFoundException | SQLException e1) {
 				e1.printStackTrace();
-			}finally {
-
 			}
 		}
 	}

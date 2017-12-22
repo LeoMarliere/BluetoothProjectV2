@@ -25,8 +25,8 @@ import org.xml.sax.SAXException;
  
 public class Sms {
  
-    public static String ENVOYERSMSPRO_LOGIN    =   "33658966852";
-    public static String ENVOYERSMSPRO_PASSWORD =   "2205";
+    public static String ENVOYERSMSPRO_LOGIN    =   "33611491982";//0611491982
+    public static String ENVOYERSMSPRO_PASSWORD =   "4179";//4179
     public static String ENVOYERSMSPRO_HOST     =   "www.envoyersmspro.com";
     public static String ENVOYERSMSPRO_PROTOCOL =   "https";
     private boolean valide;
@@ -116,11 +116,6 @@ public class Sms {
     	}
     	res="33"+res;
     	return res;
-    }
-    
-    public static void main(String[] args) {
-    	Sms test = new Sms();
-    	System.out.println(test.getValidation());
     }
  
 }                               

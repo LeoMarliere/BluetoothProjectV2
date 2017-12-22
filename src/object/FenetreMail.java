@@ -73,18 +73,6 @@ public class FenetreMail {
 		
 		button.setBounds(150,500,300, 50);
 		
-		//pan1.add(label1);
-		//pan1.add(l);
-		//pan1.add(label2);
-
-		//pan1.add(label3);
-	//	pan1.add(label3);
-
-		//pan1.add(textField2);
-		//
-	
-		
-
 		fenetreMail.getContentPane().add(label1);
 		fenetreMail.getContentPane().add(label2);
 		fenetreMail.getContentPane().add(label3);
@@ -92,11 +80,8 @@ public class FenetreMail {
 		fenetreMail.getContentPane().add(label4);
 		fenetreMail.getContentPane().add(textArea2);
 		fenetreMail.getContentPane().add(button);
-		
-		//fenetreMail.getContentPane().add(pan2,BorderLayout.CENTER);
-		
+
 		}
-	
 	
 	private class Envoyer extends AbstractAction {
 		private Envoyer() {

@@ -30,7 +30,7 @@ public class FenetreMenu {
 		button1 = new JButton(new FichesClients());
 		button2 = new JButton(new DetectionBluetooth());
 
-		label1 = new JLabel("Bienvenue dans le gestionnaire de fiche client");
+		label1 = new JLabel("Bienvenue dans le gestionnaire de fiches clients");
 		font1 = new Font("Serial", Font.PLAIN, 26);
 		font2 = new Font("Serial", Font.BOLD, 30);
 		button1.setFont(font1);
@@ -55,7 +55,6 @@ public class FenetreMenu {
 			try {
 				FenetreList list = new FenetreList();
 			} catch (ClassNotFoundException | IOException | InterruptedException | SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -71,7 +70,6 @@ public class FenetreMenu {
 			try {
 				Fenetre fen = new Fenetre();
 			} catch (IOException | InterruptedException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 

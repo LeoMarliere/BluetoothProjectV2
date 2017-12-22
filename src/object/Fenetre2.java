@@ -37,7 +37,7 @@ public class Fenetre2 {
 		this.deviceName=deviceName;
 		fenetre2 = new JFrame("BluetoothDevice");
 		pan1 = new JPanel();
-
+		System.out.println(adresseMac);
 		fenetre2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre2.setLocation(500, 200); 
 		fenetre2.setSize(600,700);

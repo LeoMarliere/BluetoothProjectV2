@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import outils.DetectedDevicePanel;
 
 public class Fenetre{
+	
 	private JTable tableau;
 	private JScrollPane scrollPane;
 	private JFrame frame1;

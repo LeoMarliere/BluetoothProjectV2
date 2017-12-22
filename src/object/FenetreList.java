@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import outils.DetectedDevicePanel;
 import outils.ListClient;
 
 public class FenetreList {
@@ -48,12 +47,15 @@ public class FenetreList {
 		JButton button1 = new JButton(new VoirFiche());
 		JButton button2 = new JButton(new ModifierFiche());
 		JButton button3 = new JButton(new SupprimerFiche());
+		JButton button4 = new JButton(new Actualiser());
 		button1.setFont(font);
 		button2.setFont(font);
 		button3.setFont(font);
+		button4.setFont(font);
 		boutons.add(button1);
 		boutons.add(button2);
 		boutons.add(button3);
+		boutons.add(button4);
 
 		fenetreList.getContentPane().add(boutons, BorderLayout.SOUTH);
 	}
@@ -122,14 +124,27 @@ public class FenetreList {
 					try {
 						Fenetre5 fen5 = new Fenetre5(adresseMac);
 					} catch (ClassNotFoundException | SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-				}
+									}
 			}else {
 				JOptionPane jop2 = new JOptionPane();
 				jop2.showMessageDialog(null,"Sélectioner un client","Attention",JOptionPane.WARNING_MESSAGE);
 			}
+		}
+	}
+	
+	private class Actualiser extends AbstractAction {
+		private Actualiser() {
+			super("Actualiser");
+		}
+		public void actionPerformed(ActionEvent e) {
+			try {
+				tableau.setModel(new ListClient());
+			} catch (ClassNotFoundException | IOException | InterruptedException | SQLException e1) {
+				e1.printStackTrace();
+			}
+			scrollPane.setViewportView(tableau);
 		}
 	}
 }

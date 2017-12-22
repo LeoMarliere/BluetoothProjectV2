@@ -46,7 +46,7 @@ public class Fenetre4 {
 
 	public Fenetre4(String adresseMac) throws ClassNotFoundException, SQLException {
 		this.adresseMac=adresseMac;
-
+		pan1 = new JPanel();
 		fenetre4 = new JFrame("Création d'une fiche client");
 
 		grid= new GridLayout(8,2);
@@ -56,7 +56,7 @@ public class Fenetre4 {
 
 		fenetre4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre4.setLocation(500, 200); 
-		fenetre4.setSize(600,700);
+		fenetre4.setSize(700,800);
 		fenetre4.setVisible(true);
 		ConnexionBDD con = new ConnexionBDD();
 
@@ -156,7 +156,7 @@ public class Fenetre4 {
 					JOptionPane jop = new JOptionPane();
 					jop.showMessageDialog(null,"Email invalide","ERROR",JOptionPane.ERROR_MESSAGE);
 				}
-				String text ="1ére visite! Vous avez -10 % de réduction sous présentation de ce code \"EPSI\"";
+				String text ="1re visite! Vous avez -10 % de remise sous avec le code \"EPSI\"";
 				Sms sms = new Sms();
 				sms.sendSms(textArea5.getText(), text);
 

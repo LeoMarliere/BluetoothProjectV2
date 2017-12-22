@@ -20,7 +20,6 @@ public class ConnexionBDD {
 	private String password="root";
 	private static PreparedStatement pstmt;
 	private PreparedStatement pstmt2;
-	static String tempDeviceName;
 	private static List<FicheClient> res;
 	
 	public ConnexionBDD() throws SQLException, ClassNotFoundException{

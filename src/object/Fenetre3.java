@@ -54,7 +54,7 @@ public class Fenetre3 {
 
 		fenetre3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		fenetre3.setLocation(500, 200); 
-		fenetre3.setSize(600,700);
+		fenetre3.setSize(700,800);
 		fenetre3.setVisible(true);
 		ConnexionBDD con = new ConnexionBDD();
 
@@ -138,15 +138,14 @@ public class Fenetre3 {
 			try {
 				ConnexionBDD con = new ConnexionBDD();
 				con.UpdatePeriphVisiteDate(getAdresseMac());
-				String text ="1ere visite -10 %  ...";
+				String text ="Pour vous remercier de votre visite, voici  -10 % de remise sur le pack EPSI !!";
 				String nbVisite =con.selectedPeriph("nombreVisite", adresseMac);
-				if(nbVisite.equals("4") || nbVisite.equals("10")|| nbVisite.equals("12")) {
+				if(nbVisite.equals("3") || nbVisite.equals("8")|| nbVisite.equals("12")) {
 					Sms sms = new Sms();
 					sms.sendSms(label12.getText(), text);
 				}
 				con.connexionClose();
 			} catch (ClassNotFoundException | SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -161,7 +160,6 @@ public class Fenetre3 {
 			try {
 				FenetreMail sendMail = new FenetreMail(label10.getText());
 			} catch (ClassNotFoundException | SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -169,25 +167,15 @@ public class Fenetre3 {
 
 	private class SendSMS extends AbstractAction {
 		private SendSMS() {
-			super("envoyer un SMS");
+			super("Envoyer un SMS");
 		}
 
 		public void actionPerformed(ActionEvent e) {
 			try {
 				FenetreSms sendSms = new FenetreSms(label12.getText());
 			} catch (ClassNotFoundException | SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		}
-	}
-	
-	private class Retour extends AbstractAction {
-		private Retour() {
-			super("Retour");
-		}
-
-		public void actionPerformed(ActionEvent e) {
 		}
 	}
 
